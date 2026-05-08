@@ -1,342 +1,338 @@
-import { useState } from "react";
+// ==========================
+// USER DATA
+// ==========================
 
-export default function App() {
-  const [activeTab, setActiveTab] = useState("home");
+const [users, setUsers] = useState([
+  {
+    id: 1,
+    name: "Aye Tharaphi Kyaw",
 
-  const username = "Aye Tharaphi Kyaw";
-  const relationship = "In a Relationship";
+    bio: "💙 GUSTO College Student",
 
-  const profileImage =
-    "https://i.imgur.com/6VBx3io.jpeg";
+    relationship: "In a Relationship",
 
-  const [posts, setPosts] = useState<any[]>([
-    {
-      text: "Welcome to Gusto Community 💙",
-      image:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-      time: "2h ago",
-    },
-  ]);
+    hometown: "Natogyi",
 
-  const [newPost, setNewPost] = useState("");
-  const [selectedImage, setSelectedImage] = useState("");
+    profile:
+      "https://i.imgur.com/8Km9tLL.jpg",
 
-  const handleImageUpload = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = e.target.files?.[0];
+    cover:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
 
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setSelectedImage(imageUrl);
-    }
-  };
+    friends: [2],
 
-  const addPost = () => {
-    if (newPost || selectedImage) {
-      const post = {
-        text: newPost,
-        image: selectedImage,
-        time: "Just now",
-      };
+    requests: [3],
 
-      setPosts([post, ...posts]);
+    posts: [],
+  },
 
-      setNewPost("");
-      setSelectedImage("");
-    }
-  };
+  {
+    id: 2,
 
-  return (
-    <div
-      style={{
-        background: "#18191A",
-        minHeight: "100vh",
-        color: "white",
-        fontFamily: "Arial",
-        paddingBottom: "80px",
-      }}
-    >
-      {/* Header */}
-      <div
-        style={{
-          background: "#242526",
-          padding: "15px",
-          fontSize: "28px",
-          fontWeight: "bold",
-          color: "#1877f2",
-          position: "sticky",
-          top: 0,
-        }}
-      >
-        Gusto Community 
-      </div>
+    name: "Willi Yan",
 
-      {/* HOME */}
-      {activeTab === "home" && (
-        <div>
-          {/* Post Box */}
-          <div
-            style={{
-              background: "#242526",
-              padding: "15px",
-              marginTop: "10px",
-            }}
-          >
-            <div style={{ display: "flex", gap: "10px" }}>
-              <img
-                src={profileImage}
-                style={{
-                  width: "45px",
-                  height: "45px",
-                  borderRadius: "50%",
-                }}
-              />
+    bio: "🎓 Digital Creator",
 
-              <input
-                placeholder="What's on your mind?"
-                value={newPost}
-                onChange={(e) =>
-                  setNewPost(e.target.value)
-                }
-                style={{
-                  flex: 1,
-                  borderRadius: "30px",
-                  border: "none",
-                  padding: "10px",
-                  background: "#3A3B3C",
-                  color: "white",
-                }}
-              />
-            </div>
+    relationship: "Single",
 
-            <br />
+    hometown: "Yangon",
 
-            <input
-              type="file"
-              onChange={handleImageUpload}
-            />
+    profile:
+      "https://i.imgur.com/2DhmtJ4.jpg",
 
-            <button
-              onClick={addPost}
-              style={{
-                marginTop: "10px",
-                width: "100%",
-                padding: "10px",
-                borderRadius: "10px",
-                border: "none",
-                background: "#1877f2",
-                color: "white",
-                fontWeight: "bold",
-              }}
-            >
-              Post
-            </button>
-          </div>
+    cover:
+      "https://images.unsplash.com/photo-1493558103817-58b2924bce98",
 
-          {/* Stories */}
-          <div
-            style={{
-              display: "flex",
-              overflowX: "auto",
-              gap: "10px",
-              padding: "15px",
-            }}
-          >
-            <div
-              style={{
-                minWidth: "120px",
-                height: "200px",
-                borderRadius: "15px",
-                backgroundImage: `url(${profileImage})`,
-                backgroundSize: "cover",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "10px",
-                  left: "10px",
-                  fontWeight: "bold",
-                }}
-              >
-                Your Story
-              </div>
-            </div>
-          </div>
+    friends: [1],
 
-          {/* Posts */}
-          {posts.map((post, index) => (
-            <div
-              key={index}
-              style={{
-                background: "#242526",
-                marginTop: "10px",
-                padding: "15px",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-              >
-                <img
-                  src={profileImage}
-                  style={{
-                    width: "45px",
-                    height: "45px",
-                    borderRadius: "50%",
-                  }}
-                />
+    requests: [],
 
-                <div>
-                  <div
-                    style={{
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {username}
-                  </div>
+    posts: [],
+  },
 
-                  <div
-                    style={{
-                      color: "gray",
-                      fontSize: "12px",
-                    }}
-                  >
-                    {post.time}
-                  </div>
-                </div>
-              </div>
+  {
+    id: 3,
 
-              <p style={{ marginTop: "15px" }}>
-                {post.text}
-              </p>
+    name: "Su Su",
 
-              {post.image && (
-                <img
-                  src={post.image}
-                  style={{
-                    width: "100%",
-                    borderRadius: "10px",
-                  }}
-                />
-              )}
+    bio: "🌸 Student",
 
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  marginTop: "10px",
-                  color: "#b0b3b8",
-                }}
-              >
-                <div>👍 Like</div>
-                <div>💬 Comment</div>
-                <div>↗ Share</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+    relationship: "Single",
 
-      {/* FRIENDS PAGE */}
-      {activeTab === "friends" && (
-        <div style={{ padding: "20px" }}>
-          <h2>Friends</h2>
+    hometown: "Mandalay",
 
-          <div
-            style={{
-              background: "#242526",
-              padding: "15px",
-              borderRadius: "10px",
-              marginTop: "15px",
-            }}
-          >
-            👥 Friends Count: 128
-          </div>
+    profile:
+      "https://i.imgur.com/n8OYCzR.jpg",
 
-          <div
-            style={{
-              background: "#242526",
-              padding: "15px",
-              borderRadius: "10px",
-              marginTop: "15px",
-            }}
-          >
-            📩 Friend Requests: 5
-          </div>
-        </div>
-      )}
+    cover:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
 
-      {/* PROFILE PAGE */}
-      {activeTab === "profile" && (
-        <div>
-          <div
-            style={{
-              background:
-                "linear-gradient(to right,#1877f2,#42a5f5)",
-              height: "180px",
-            }}
-          ></div>
+    friends: [],
 
-          <div
-            style={{
-              textAlign: "center",
-              marginTop: "-60px",
-            }}
-          >
-            <img
-              src={profileImage}
-              style={{
-                width: "120px",
-                height: "120px",
-                borderRadius: "50%",
-                border: "5px solid #18191A",
-              }}
-            />
+    requests: [],
 
-            <h2>{username}</h2>
+    posts: [],
+  },
+]);
 
-            <p style={{ color: "#b0b3b8" }}>
-              ❤️ {relationship}
-            </p>
+// ==========================
+// LOGIN USER
+// ==========================
 
-            <p style={{ color: "#b0b3b8" }}>
-              👥 128 Friends
-            </p>
-          </div>
-        </div>
-      )}
+const currentUserId = 1;
 
-      {/* Bottom Navigation */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          width: "100%",
-          background: "#242526",
-          display: "flex",
-          justifyContent: "space-around",
-          padding: "15px 0",
-          borderTop: "1px solid #333",
-        }}
-      >
-        <div onClick={() => setActiveTab("home")}>
-          🏠 Home
-        </div>
+const currentUser = users.find(
+  (u) => u.id === currentUserId
+);
 
-        <div onClick={() => setActiveTab("friends")}>
-          👥 Friends
-        </div>
+// ==========================
+// PROFILE EDIT STATES
+// ==========================
 
-        <div onClick={() => setActiveTab("profile")}>
-          👤 Profile
-        </div>
-      </div>
-    </div>
+const [editName, setEditName] =
+  useState(currentUser?.name || "");
+
+const [editBio, setEditBio] =
+  useState(currentUser?.bio || "");
+
+const [
+  editRelationship,
+  setEditRelationship,
+] = useState(
+  currentUser?.relationship || ""
+);
+
+const [editTown, setEditTown] =
+  useState(currentUser?.hometown || "");
+
+// ==========================
+// SAVE PROFILE INFO
+// ==========================
+
+const saveProfile = () => {
+  setUsers((prev) =>
+    prev.map((user) =>
+      user.id === currentUserId
+        ? {
+            ...user,
+
+            name: editName,
+
+            bio: editBio,
+
+            relationship:
+              editRelationship,
+
+            hometown: editTown,
+          }
+        : user
+    )
   );
-}
+};
+
+// ==========================
+// CHANGE PROFILE PHOTO
+// ==========================
+
+const changeProfilePhoto = (
+  e: any
+) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    const imageUrl =
+      URL.createObjectURL(file);
+
+    setUsers((prev) =>
+      prev.map((user) =>
+        user.id === currentUserId
+          ? {
+              ...user,
+              profile: imageUrl,
+            }
+          : user
+      )
+    );
+  }
+};
+
+// ==========================
+// CHANGE COVER PHOTO
+// ==========================
+
+const changeCoverPhoto = (
+  e: any
+) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    const imageUrl =
+      URL.createObjectURL(file);
+
+    setUsers((prev) =>
+      prev.map((user) =>
+        user.id === currentUserId
+          ? {
+              ...user,
+              cover: imageUrl,
+            }
+          : user
+      )
+    );
+  }
+};
+
+// ==========================
+// FRIEND SYSTEM
+// ==========================
+
+// SEND REQUEST
+const sendFriendRequest = (
+  targetId: number
+) => {
+  setUsers((prev) =>
+    prev.map((user) => {
+      if (user.id === targetId) {
+        return {
+          ...user,
+
+          requests: [
+            ...user.requests,
+            currentUserId,
+          ],
+        };
+      }
+
+      return user;
+    })
+  );
+};
+
+// ACCEPT REQUEST
+const acceptRequest = (
+  requesterId: number
+) => {
+  setUsers((prev) =>
+    prev.map((user) => {
+      if (user.id === currentUserId) {
+        return {
+          ...user,
+
+          friends: [
+            ...user.friends,
+            requesterId,
+          ],
+
+          requests: user.requests.filter(
+            (id) => id !== requesterId
+          ),
+        };
+      }
+
+      if (user.id === requesterId) {
+        return {
+          ...user,
+
+          friends: [
+            ...user.friends,
+            currentUserId,
+          ],
+        };
+      }
+
+      return user;
+    })
+  );
+};
+
+// FRIEND LIST
+const friendList = users.filter(
+  (u) =>
+    currentUser?.friends.includes(u.id)
+);
+
+// REQUEST LIST
+const requestList = users.filter(
+  (u) =>
+    currentUser?.requests.includes(u.id)
+);
+
+// ==========================
+// POST SYSTEM
+// ==========================
+
+const [postText, setPostText] =
+  useState("");
+
+const [postImage, setPostImage] =
+  useState("");
+
+const [postVideo, setPostVideo] =
+  useState("");
+
+// UPLOAD IMAGE
+const uploadImage = (e: any) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    setPostImage(
+      URL.createObjectURL(file)
+    );
+  }
+};
+
+// UPLOAD VIDEO
+const uploadVideo = (e: any) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    setPostVideo(
+      URL.createObjectURL(file)
+    );
+  }
+};
+
+// CREATE POST
+const createPost = () => {
+  if (
+    !postText &&
+    !postImage &&
+    !postVideo
+  )
+    return;
+
+  const newPost = {
+    id: Date.now(),
+
+    userId: currentUserId,
+
+    text: postText,
+
+    image: postImage,
+
+    video: postVideo,
+
+    time: "Just now",
+  };
+
+  setUsers((prev) =>
+    prev.map((user) =>
+      user.id === currentUserId
+        ? {
+            ...user,
+
+            posts: [
+              newPost,
+              ...user.posts,
+            ],
+          }
+        : user
+    )
+  );
+
+  setPostText("");
+
+  setPostImage("");
+
+  setPostVideo("");
+};
