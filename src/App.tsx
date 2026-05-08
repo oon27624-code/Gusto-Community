@@ -69,7 +69,7 @@ export default function App() {
           top: 0,
         }}
       >
-        facebook
+        Gusto Community 
       </div>
 
       {/* HOME */}
